@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 const _import = require('./_import_' + process.env.NODE_ENV);
 // in development env not use Lazy Loading,because Lazy Loading large page will cause webpack hot update too slow.so only in production use Lazy Loading
 
@@ -19,31 +20,35 @@ const Err404 = _import('404');
 const Form = _import('page/form');
 const Table = _import('table/index');
 
+/* activities page */
+const Activities = _import('activities/index');
+const activities_create = _import('activities/create');
+
 Vue.use(Router);
 
- /**
-  * icon : the icon show in the sidebar
-  * hidden : if `hidden:true` will not show in the sidebar
-  * redirect : if `redirect:noredirect` will not redirct in the levelbar
-  * noDropdown : if `noDropdown:true` will not has submenu in the sidebar
-  * meta : `{ role: ['admin'] }`  will control the page role
-  **/
+/**
+ * icon : the icon show in the sidebar
+ * hidden : if `hidden:true` will not show in the sidebar
+ * redirect : if `redirect:noredirect` will not redirct in the levelbar
+ * noDropdown : if `noDropdown:true` will not has submenu in the sidebar
+ * meta : `{ role: ['admin'] }`  will control the page role
+ **/
 export const constantRouterMap = [
-  { path: '/login', component: Login, hidden: true },
-  { path: '/404', component: Err404, hidden: true },
+  {path: '/login', component: Login, hidden: true},
+  {path: '/404', component: Err404, hidden: true},
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     name: 'Home',
     hidden: true,
-    children: [{ path: 'dashboard', component: dashboard }]
+    children: [{path: 'dashboard', component: dashboard}]
   }
 ]
 
 export default new Router({
   // mode: 'history', //后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRouterMap
 });
 
@@ -55,7 +60,7 @@ export const asyncRouterMap = [
     name: '例子3',
     icon: 'zujian',
     children: [
-      { path: 'index', component: Form, name: 'Form', icon: 'zonghe' }
+      {path: 'index', component: Form, name: 'Form', icon: 'zonghe'}
     ]
   },
 
@@ -66,8 +71,30 @@ export const asyncRouterMap = [
     name: 'Table',
     icon: 'tubiaoleixingzhengchang',
     noDropdown: false,
-    children: [{ path: 'index', component: Table, name: 'Table', meta: { role: ['admin'] } }]
+    children: [{path: 'index', component: Table, name: 'Table', meta: {role: ['admin']}}]
+  },
+  {
+    path: '/activities',
+    component: Layout,
+    redirect: '/activities/index',
+    name: '活动',
+    icon: 'tubiaoleixingzhengchang',
+    noDropdown: false,
+    children: [
+      {
+        path: 'index',
+        component: Activities,
+        name: '活动列表',
+        meta: {role: ['admin']}
+      },
+      {
+        path: 'create',
+        component: activities_create,
+        name: '活动创建',
+        meta: {role: ['admin']}
+      }
+      ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  {path: '*', redirect: '/404', hidden: true}
 ];
