@@ -20,6 +20,13 @@ const Err404 = _import('404');
 const Form = _import('page/form');
 const Table = _import('table/index');
 
+/* user page */
+const user = _import('user/index');
+
+/* library page */
+const library = _import('library/index');
+
+
 /* activities page */
 const Activities = _import('activities/index');
 const activities_create = _import('activities/create');
@@ -59,6 +66,7 @@ export const asyncRouterMap = [
     redirect: 'noredirect',
     name: '例子3',
     icon: 'zujian',
+    hidden: true,
     children: [
       {path: 'index', component: Form, name: 'Form', icon: 'zonghe'}
     ]
@@ -71,7 +79,40 @@ export const asyncRouterMap = [
     name: 'Table',
     icon: 'tubiaoleixingzhengchang',
     noDropdown: false,
+    hidden: true,
     children: [{path: 'index', component: Table, name: 'Table', meta: {role: ['admin']}}]
+  },
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    name: '用户',
+    icon: 'tubiaoleixingzhengchang',
+    noDropdown: false,
+    children: [
+      {
+        path: 'index',
+        component: user,
+        name: '用户列表',
+        meta: {role: ['admin']}
+      },
+    ]
+  },
+  {
+    path: '/books',
+    component: Layout,
+    redirect: '/books/index',
+    name: '图书馆',
+    icon: 'tubiaoleixingzhengchang',
+    noDropdown: false,
+    children: [
+      {
+        path: 'index',
+        component: library,
+        name: '图书列表',
+        meta: {role: ['admin']}
+      },
+    ]
   },
   {
     path: '/activities',
