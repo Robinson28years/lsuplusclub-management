@@ -34,7 +34,7 @@
       name: 'login',
       data() {
         const validateEmail = (rule, value, callback) => {
-          if (!isWscnEmail(value)) {
+          if (false) {
             callback(new Error('请输入正确的合法邮箱'));
           } else {
             callback();
@@ -49,8 +49,8 @@
         };
         return {
           loginForm: {
-            email: 'admin@wallstreetcn.com',
-            password: '111111'
+            email: 'vue@test.com',
+            password: '123456'
           },
           loginRules: {
             email: [

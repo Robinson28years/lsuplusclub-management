@@ -52,7 +52,7 @@ export const asyncRouterMap = [
     path: '/example',
     component: Layout,
     redirect: 'noredirect',
-    name: 'Example',
+    name: '例子3',
     icon: 'zujian',
     children: [
       { path: 'index', component: Form, name: 'Form', icon: 'zonghe' }
@@ -65,7 +65,7 @@ export const asyncRouterMap = [
     redirect: '/table/index',
     name: 'Table',
     icon: 'tubiaoleixingzhengchang',
-    noDropdown: true,
+    noDropdown: false,
     children: [{ path: 'index', component: Table, name: 'Table', meta: { role: ['admin'] } }]
   },
 

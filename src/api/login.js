@@ -2,7 +2,7 @@ import fetch from '@/utils/fetch';
 
 export function login(email, password) {
   return fetch({
-    url: '/user/login',
+    url: '/login',
     method: 'post',
     data: {
       email,
@@ -11,19 +11,20 @@ export function login(email, password) {
   });
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return fetch({
-    url: '/user/info',
+    url: '/get_user_details',
     method: 'get',
-    params: { token }
+    // params: { token }
   });
 }
 
 export function logout() {
-  return fetch({
-    url: '/user/logout',
-    method: 'post'
-  });
+  // return fetch({
+  //   url: '/user/logout',
+  //   method: 'post'
+  // });
+  return true
 }
 
 
