@@ -101,16 +101,16 @@
     created() {
       axios.get('api/users/all')
         .then(response => {
-          console.log(response.data);
-          let k = response.data.data;
+          // console.log(response.data);
+          let k = response.data.result.data;
           let i = 0;
           while (k[i] != null) {
             this.tableData.push(k[i]);
 //            console.log(k[i]);
             i++;
           }
-          this.total = response.data.total;
-          this.page_size = response.data.per_page;
+          this.total = response.data.result.total;
+          this.page_size = response.data.result.per_page;
         })
       if (localStorage.getItem('user') != null) {
         this.userLogin = true;
@@ -123,7 +123,7 @@
           .then(response => {
             this.tableData = null;
             this.tableData = [];
-            let k = response.data.data;
+            let k = response.data.result.data;
             let i = 0;
             while (k[i] != null) {
               this.tableData.push(k[i]);

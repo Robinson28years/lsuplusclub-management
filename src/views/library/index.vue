@@ -129,16 +129,16 @@
     created() {
       axios.get('api/books')
         .then(response => {
-          console.log(response.data);
-          let k = response.data.data;
+          // console.log(response.data);
+          let k = response.data.data.data;
           let i = 0;
           while (k[i] != null) {
             this.tableData.push(k[i]);
 //            console.log(k[i]);
             i++;
           }
-          this.total = response.data.total;
-          this.page_size = response.data.per_page;
+          this.total = response.data.data.total;
+          this.page_size = response.data.data.per_page;
         })
       if (localStorage.getItem('user') != null) {
         this.userLogin = true;
@@ -155,8 +155,8 @@
       submit() {
         axios.post('api/books', this.form)
           .then(response => {
-            console.log(response.data);
-            this.tableData.unshift(response.data);
+            // console.log(response.data);
+            this.tableData.unshift(response.data.data);
             this.dialogFormVisible = false;
             this.open2();
           })
@@ -169,9 +169,9 @@
           axios.patch('api/books/' + row.id)
             .then(response => {
 //              console.log(response.data);
-              row.state = response.data.state;
-              row.borrower = response.data.borrower;
-              row.return_time = response.data.return_time;
+              row.state = response.data.data.state;
+              row.borrower = response.data.data.borrower;
+              row.return_time = response.data.data.return_time;
               swal("借阅成功！", "享受你的阅读吧", "success");
             })
         }
@@ -183,7 +183,7 @@
           .then(response => {
             this.tableData = null;
             this.tableData = [];
-            let k = response.data.data;
+            let k = response.data.data.data;
             let i = 0;
             while (k[i] != null) {
               this.tableData.push(k[i]);

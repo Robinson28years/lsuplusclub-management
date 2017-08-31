@@ -62,9 +62,9 @@
       axios.get('api/activities')
         .then(res => {
           console.log(res.data);
-          this.tableData = res.data.data;
-          this.total = res.data.total;
-          this.page_size = res.data.per_page;
+          this.tableData = res.data.data.data;
+          this.total = res.data.data.total;
+          this.page_size = res.data.data.per_page;
         })
     },
     methods: {
@@ -76,7 +76,7 @@
           .then(response => {
 //            this.activities = null;
             this.tableData = [];
-            let k = response.data.data;
+            let k = response.data.data.data;
             let i = 0;
             while (k[i] != null) {
               this.tableData.push(k[i]);
