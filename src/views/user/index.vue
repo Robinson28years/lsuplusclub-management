@@ -38,7 +38,7 @@
             </el-table-column>
             <el-table-column
                     label="学号"
-                    prop="studenid">
+                    prop="studentid">
             </el-table-column>
             <el-table-column
                     label="班级"
